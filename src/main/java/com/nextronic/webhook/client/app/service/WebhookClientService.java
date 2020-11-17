@@ -40,4 +40,19 @@ public class WebhookClientService {
         return result;
 	}
 	
+	public String sendContent(String webhookUrl,Message message) throws JsonProcessingException {
+		log.info(LoggingUtils.getMessage(webhookUrl));
+		log.info(LoggingUtils.getMessage(message));
+
+		HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        String messageJson = objectMapper.writeValueAsString(message);
+        HttpEntity<String> entity = new HttpEntity<String>(messageJson, headers);
+        
+        String result = restTemplate.exchange(webhookUrl, HttpMethod.POST, entity, String.class).getBody();
+        
+        log.info(LoggingUtils.getMessage(result));
+        return result;
+	}	
+	
 }

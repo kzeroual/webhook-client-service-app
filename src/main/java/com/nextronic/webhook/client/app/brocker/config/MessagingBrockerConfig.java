@@ -47,10 +47,6 @@ public class MessagingBrockerConfig {
 	        return QueueBuilder.nonDurable(WEBHOOK_QUEUE_NAME)
 	                .withArgument("x-dead-letter-exchange", DEAD_LETTER_EXCHANGE_NAME)
 	                .withArgument("x-dead-letter-routing-key", DEAD_LETTER_WEBHOOK_QUEUE_NAME)
-	                .withArgument("x-max-length", 1) //max number of elements available in queue 
-	                // how many bytes(octet) //max number of bytes available in queue 
-	               // .withArgument("x-max-length-bytes", 2)
-	               //.withArgument("x-message-ttl", 500)
 	                .build();
 	    }
 	  
